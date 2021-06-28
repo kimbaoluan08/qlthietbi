@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>
+        Generate a Random Password
+        using JavaScript
+    </title>
+</head>
+
+<body style = "text-align:center;">
+
+    <h1 style = "color: green">
+        GeeksforGeeks
+    </h1>
+
+    <h3>
+        Click on the button to
+        generate random password.
+    </h3>
+
+    <button onclick = "gfg_Run()">
+        Click Here
+    </button>
+
+    <p id = "geeks"></p>
+
+    <script>
+        var el_down = document.getElementById("geeks");
+
+        function gfg_Run() {
+            el_down.innerHTML =
+                Math.random().toString(36).slice(2) +
+                Math.random().toString(36)
+                    .toUpperCase().slice(2);
+            }
+    </script>
+</body>
+
+</html>
