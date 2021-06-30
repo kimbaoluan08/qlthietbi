@@ -92,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Quản lý đơn vị</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{ URL::to('/themdv') }}"><i class="fa fa-plus" aria-hidden="true"></i> Thêm đơn vị</a></li>
+                                <li><a href="{{ URL::to('/adddv') }}"><i class="fa fa-plus" aria-hidden="true"></i> Thêm đơn vị</a></li>
                                 <li><a href="{{ URL::to('/qldv') }}"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh sách đơn vị</a></li>
                             </ul>
                         </li>
