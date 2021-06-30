@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label for="exampleInputFile">Trạng thái</label>
                             <select class="form-control input-sm m-bot15" name="tinhtrang">
-                                <option value="1">Đang sử dụng</option>
+                                <option value="1">Kích hoạt</option>
                                 <option value="0">Khóa</option>
                             </select>
                         </div>

@@ -15,11 +15,11 @@
         ?>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="{{URL::to('/save-user')}}" method="post">
+                    <form role="form" action="{{URL::to('/save-dv')}}" method="post">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên đơn vị</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" name="ten_hangsx">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="ten_dv">
                         </div>
                         <!-- <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả thương hiệu</label>
