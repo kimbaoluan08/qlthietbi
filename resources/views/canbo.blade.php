@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Báo cáo sự cố</title>
+    <title>Sửa chữa thiết bị</title>
     <link href="{{ asset('public/frontend/nguoidung/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/nguoidung/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/nguoidung/css/prettyPhoto.css') }}" rel="stylesheet">
@@ -67,7 +67,7 @@
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-user"></i> Thông tin cá nhân</a></li>
-                                <li><a href="{{ URL::to('/dangxuat-nguoidung') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                                <li><a href="{{ URL::to('/dangxuat-cb') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -91,17 +91,11 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{ URL::to('/nguoidung') }}" class="active">Home</a></li>
-                                <li class="dropdown"><a href="#">Báo cáo sự cố</a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="{{ URL::to('/baocao') }}">Máy tính các loại</a></li>
-                                        <li><a href="{{ URL::to('/baocao') }}">Máy in các loại</a></li>
-                                        <li><a href="{{ URL::to('/baocao') }}">Thiết bị khác</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{{ URL::to('/yeucau') }}">Yêu cầu đã gửi</a></li>
+                                <li><a href="{{ URL::to('/canbo') }}" class="active">Home</a></li>
+                                <li><a href="{{ URL::to('/yeucau-kh') }}">Yêu cầu</a></li>
+                                <li><a href="{{ URL::to('/danhgia') }}">Đang thực hiện</a></li>
+                                <li><a href="{{ URL::to('/danhgia') }}">Đã hoàn thành</a></li>
                                 <li><a href="404.html">Thông báo</a></li>
-                                <li><a href="{{ URL::to('/danhgia') }}">Đánh giá</a></li>
                             </ul>
                         </div>
                     </div>
@@ -122,7 +116,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="left-sidebar">
-                        <h2>THÔNG TIN</h2>
+                        <h2>THÔNG BÁO</h2>
                         <div class="panel-group category-products" id="accordian">
                             <!--category-productsr-->
                             <div class="panel panel-default">
@@ -149,7 +143,7 @@
                         <!--/category-products-->
                     </div>
                 </div>
-                <div class="col-sm-8 padding-right">@yield('content_nguoidung')</div>
+                <div class="col-sm-8 padding-right">@yield('content_canbo')</div>
             </div>
         </div>
     </section>

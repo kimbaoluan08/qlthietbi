@@ -106,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{URL::to('/phanquyen')}}">
                                 <i class="fa fa-book"></i>
                                 <span>Phân quyền người dùng</span>
                             </a>
