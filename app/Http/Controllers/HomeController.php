@@ -13,4 +13,7 @@ class HomeController extends Controller
         $dv = DB::table('donvi')->where('madvcha', '!=', NULL)->get();
         return view('form.dangki')->with('dv', $dv);
     }
+    public function danhgia(){
+        return view('home.danhgia');
+    }
 }

@@ -168,6 +168,17 @@ class UserController extends Controller
         Session::put('id_cb', null);
         return Redirect('/');
     }
+    public function thongbao(){
+        $this->user();
+        $id = Session::get('id');
+        $ph = DB::table('yeucau')->join('phanhoicb', 'phanhoicb.mayeucau', '=', 'yeucau.mayc')->where('idnguoidung', $id)->get();
+        return view('user.thongbao')->with('ph', $ph);
+    }
+    public function xemdanhgia(){
+        $this->user();
+        $binhluan = DB::table('nguoidung')->join('danhgia', 'danhgia.id', '=', 'nguoidung.id')->get();
+        return view('user.xemdanhgia')->with('bl', $binhluan);
+    }
     //Can bo
     public function user_canbo()
     {
@@ -184,7 +195,98 @@ class UserController extends Controller
     }
     public function yeucau_kh(){
         $this->user_canbo();
-        $yc = DB::table('yeucau')->get();
+        $yc = DB::table('yeucau')->leftJoin('phanhoicb', 'phanhoicb.mayeucau', '=', 'yeucau.mayc')->get();
         return view('canbo.yc_khachhang')->with('yc', $yc);
     }
-}   
+    public function traloi($mayc){
+        $this->user_canbo();
+        return view('canbo.traloi')->with('mayc', $mayc);
+    }
+    public function luu_traloi($mayc, Request $request){
+        $this->user_canbo();
+        $data = array();
+        $data['noidung'] = $request->phanhoi;
+        $data['mayeucau'] = $mayc;
+        $data['ngayph'] = date('Y-m-d H:i:s');
+        $data['tiendo'] = 1;
+        DB::table('phanhoicb')->insert($data);
+        $data_1 = array();
+        $data_1['hientrang'] = 1;
+        DB::table('yeucau')->where('mayc', $mayc)->update($data_1);
+        return view('canbo.alert_traloi');
+    }
+    public function dangthuchien(){
+        $this->user_canbo();
+        $yc1 = DB::table('yeucau')->join('phanhoicb', 'phanhoicb.mayeucau', '=', 'yeucau.mayc')->get();
+        return view('canbo.dangthuchien')->with('yc1', $yc1);
+    }
+    public function tienhanh($matb){
+        $this->user_canbo();
+        $lk = DB::table('linhkien')->get();
+        return view('canbo.tienhanh')->with('matb', $matb)->with('lk', $lk);
+    }
+    public function luu_hoadon($matb,Request $request){
+        $this->user_canbo();
+        $data = array();
+        $data['matb'] = $matb;
+        $data['ngaylap'] = date('Y-m-d H:i:s');
+        $id_lk = DB::table('hoadon')->insertGetId($data);
+        $data_1 = array();
+        $data_1['mahd'] = $id_lk;
+        $data_1['malinhkien'] = $request->linhkien;
+        $data_1['soluong'] = $request->soluong;
+        $data_1['giatien'] = $request->gia;
+        DB::table('chitiethd')->insert($data_1);
+
+        $data_2 = array();
+        $data_2['tiendo'] = 2;
+        $mayc = DB::table('yeucau')->join('phanhoicb', 'phanhoicb.mayeucau', '=', 'yeucau.mayc')->where('matb', $matb)->first();
+        DB::table('phanhoicb')->where('mayeucau', $mayc->mayeucau)->update($data_2);
+        $hd = DB::table('hoadon')->join('yeucau', 'yeucau.matb', '=', 'hoadon.matb')->get();
+        return view('canbo.hoadon')->with('hoadon', $hd);
+    }
+    public function hoadon(){
+        $this->user_canbo();
+        $hd = DB::table('hoadon')->join('yeucau', 'yeucau.matb', '=', 'hoadon.matb')->get();
+        return view('canbo.hoadon')->with('hoadon', $hd);
+    }
+    public function themlinhkien($mahd){
+        $this->user_canbo();
+        $lk = DB::table('linhkien')->get();
+        return view('canbo.themlinhkien')->with('mahd', $mahd)->with('lk', $lk);
+    }
+    public function them_linhkien($mahd, Request $request){
+        $this->user_canbo();
+        $data_1 = array();
+        $data_1['mahd'] = $mahd;
+        $data_1['malinhkien'] = $request->linhkien;
+        $data_1['soluong'] = $request->soluong;
+        $data_1['giatien'] = $request->gia;
+        DB::table('chitiethd')->insert($data_1);
+        return view('canbo.alert_themlk');
+    }
+    public function xacnhan($mahd){
+        $data = array();
+        $hd = DB::table('chitiethd')->where('mahd', $mahd)->get();
+        $sum = 0;
+        foreach ($hd as $key => $tong){
+            $sum = $sum + ($tong->giatien * $tong->soluong);
+        }
+        $data['tong'] = $sum;
+        DB::table('hoadon')->where('mahd', $mahd)->update($data);
+
+        $data_2 = array();
+        $data_2['tiendo'] = 3;
+        $mayc = DB::table('yeucau')->join('phanhoicb', 'phanhoicb.mayeucau', '=', 'yeucau.mayc')
+        ->join('hoadon', 'hoadon.matb', '=', 'yeucau.matb')->where('mahd', $mahd)->first();
+        DB::table('phanhoicb')->where('mayeucau', $mayc->mayeucau)->update($data_2);
+
+
+        $data_3 = array();
+        $data_3['hientrang'] = 2;
+        $mayc_1 = DB::table('yeucau')->join('hoadon', 'hoadon.matb', '=', 'yeucau.matb')->where('mahd', $mahd)->first();
+        DB::table('yeucau')->where('mayc', $mayc_1->matb)->update($data_3);
+
+        return view('canbo.alert_hoantat');
+    }
+}

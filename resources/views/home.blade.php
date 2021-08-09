@@ -35,11 +35,11 @@
     <!-- Header Section -->
     <header class="header-section">
         <a href="index.html" class="site-logo">
-            <img src="{{ asset('public/frontend/img/logo.png') }}" alt="">
+            <!-- <img src="{{ asset('public/frontend/img/logo.png') }}" alt=""> -->
         </a>
         <nav class="header-nav">
             <ul class="main-menu">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html" class="active">Trang chủ</a></li>
                 <li><a href="#">Giới thiệu</a>
                     <ul class="sub-menu">
                         <li><a href="about-us.html">Nhân sự</a></li>
@@ -47,7 +47,7 @@
                         <li><a href="elements.html">Trang cá nhân</a></li>
                     </ul>
                 </li>
-                <li><a href="about-us.html">Đánh giá</a></li>
+                <li><a href="{{ URL::to('/danhgia') }}">Đánh giá</a></li>
                 <li><a href="news.html">Phản hồi</a></li>
                 <li><a href="contact.html">Liên hệ</a></li>
             </ul>
@@ -66,7 +66,7 @@
                 <div class="col-lg-6">
                     <div class="hs-text">
                         <h2>Bạn đang gặp sự cố về các thiết bị?</h2>
-                        <p></p>
+                        <p>Hãy gọi ngay hoặc đăng ký để báo cáo các sự cố của bạn chúng tôi sẽ liên hệ bạn trong thời gian sớm nhất</p>
                         <a href="#" class="site-btn sb-dark">Đăng kí ngay</a>
                     </div>
                 </div>

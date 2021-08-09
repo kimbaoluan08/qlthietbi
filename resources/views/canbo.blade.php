@@ -91,11 +91,10 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{ URL::to('/canbo') }}" class="active">Home</a></li>
+                                <li><a href="{{ URL::to('/canbo') }}" class="active">Trang chủ</a></li>
                                 <li><a href="{{ URL::to('/yeucau-kh') }}">Yêu cầu</a></li>
-                                <li><a href="{{ URL::to('/danhgia') }}">Đang thực hiện</a></li>
-                                <li><a href="{{ URL::to('/danhgia') }}">Đã hoàn thành</a></li>
-                                <li><a href="404.html">Thông báo</a></li>
+                                <li><a href="{{ URL::to('/dangthuchien') }}">Tiến độ thực hiện</a></li>
+                                <li><a href="{{ URL::to('/hoadon') }}">Hoá đơn</a></li>
                             </ul>
                         </div>
                     </div>

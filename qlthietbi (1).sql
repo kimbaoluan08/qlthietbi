@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 07, 2021 lúc 06:06 PM
+-- Thời gian đã tạo: Th8 09, 2021 lúc 05:09 PM
 -- Phiên bản máy phục vụ: 10.4.17-MariaDB
 -- Phiên bản PHP: 8.0.0
 
@@ -33,6 +33,40 @@ CREATE TABLE `chitiethd` (
   `soluong` int(2) NOT NULL,
   `giatien` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitiethd`
+--
+
+INSERT INTO `chitiethd` (`mahd`, `malinhkien`, `soluong`, `giatien`) VALUES
+(10, 2, 1, 1200000),
+(10, 4, 1, 1500000),
+(10, 3, 1, 3000000),
+(11, 2, 2, 1200000),
+(11, 2, 2, 1200000),
+(13, 4, 5, 1200000),
+(14, 4, 1, 10000000),
+(15, 4, 1, 10000000);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `danhgia`
+--
+
+CREATE TABLE `danhgia` (
+  `id` int(5) NOT NULL,
+  `noidung` varchar(150) NOT NULL,
+  `mucdo` int(1) NOT NULL,
+  `ngaydg` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `danhgia`
+--
+
+INSERT INTO `danhgia` (`id`, `noidung`, `mucdo`, `ngaydg`) VALUES
+(4, 'Dịch vụ rất tốt', 1, '2021-08-09 08:03:29');
 
 -- --------------------------------------------------------
 
@@ -72,8 +106,20 @@ INSERT INTO `donvi` (`madv`, `tendv`, `madvcha`) VALUES
 CREATE TABLE `hoadon` (
   `mahd` int(5) NOT NULL,
   `matb` int(5) NOT NULL,
-  `tong` int(10) NOT NULL
+  `tong` int(10) DEFAULT NULL,
+  `ngaylap` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoadon`
+--
+
+INSERT INTO `hoadon` (`mahd`, `matb`, `tong`, `ngaylap`) VALUES
+(10, 1, 5700000, '2021-08-09 14:04:50'),
+(11, 2, 4800000, '2021-08-09 14:13:49'),
+(13, 5, 6000000, '2021-08-09 14:14:37'),
+(14, 7, NULL, '2021-08-09 07:15:43'),
+(15, 7, NULL, '2021-08-09 07:16:24');
 
 -- --------------------------------------------------------
 
@@ -118,7 +164,8 @@ INSERT INTO `loaitb` (`maloai`, `tenloai`) VALUES
 (3, 'Máy scan'),
 (4, 'Máy tính bảng'),
 (5, 'Máy Fax'),
-(6, 'Khác');
+(6, 'Khác'),
+(8, 'Máy in');
 
 -- --------------------------------------------------------
 
@@ -145,7 +192,34 @@ CREATE TABLE `nguoidung` (
 --
 
 INSERT INTO `nguoidung` (`id`, `macb`, `tencb`, `matkhau`, `ngaysinh`, `gioitinh`, `email`, `sdt`, `madv`, `ngaythem`, `ngaysua`) VALUES
-(7, '00011', 'Luan', '$2y$10$zNwXscwjTAwYvO0Y7908VeyPzZMKtRPc7xi.GSX6v4W7z48ISfiQm', '04/08/1998', '1', 'luan@gmail.com', '0347444190', 9, '2021-08-06 00:18:48', NULL);
+(2, '00011', 'Kim Ngọc Bảo Luân', '$2y$10$xr/l9zS2DjbG5030ejZoKOz4d826WcxOcVOhCvL7GoNIIN.ZY7mHq', '23/11/1999', '1', 'luan@gmail.com', '0347444190', 10, '2021-08-08 06:42:48', NULL),
+(3, '00012', 'Phan Văn Khởi', '$2y$10$/l5QjRCOMGVnCIKCtZxoDuDlcO.9Kqs6vQ7yjwzxdMbp1Iq2g658e', '05/08/2021', '1', 'khoi@gmail.com', '0123456789', 10, '2021-08-08 06:44:02', NULL),
+(4, '00013', 'Lê Duy Khánh', '$2y$10$xdDOgsywazfeZ4P3LBLKQ.Cq7C1cgd9rlr6MA3lmDr2dJaNwlvaTa', '17/08/1994', '1', 'khanh@gmail.com', '0231212121', 9, '2021-08-08 07:12:23', NULL),
+(5, '00023', 'Kim Tùng', '$2y$10$jYy6tZYjpjW7FAp/LqQFDOjc4oJlSHp2E26.xAGfk/KBaYRrAGqAG', '19/08/1987', '1', 'tung@gmail.com', '0347412243', 3, '2021-08-09 02:44:01', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `phanhoicb`
+--
+
+CREATE TABLE `phanhoicb` (
+  `mayeucau` int(5) NOT NULL,
+  `noidung` varchar(150) NOT NULL,
+  `ngayph` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tiendo` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `phanhoicb`
+--
+
+INSERT INTO `phanhoicb` (`mayeucau`, `noidung`, `ngayph`, `tiendo`) VALUES
+(1, 'Chúng tôi đã nhận được yêu cầu của bạn', '2021-08-09 14:04:50', 3),
+(2, 'Chúng tôi sẽ đến xem và sửa chữa', '2021-08-09 14:13:49', 3),
+(5, 'Chúng tôi đã nhận được', '2021-08-09 14:14:37', 3),
+(6, 'Chúng tôi đã nhận được', '2021-08-09 02:44:41', 1),
+(7, 'Ok bạn', '2021-08-09 14:15:43', 2);
 
 -- --------------------------------------------------------
 
@@ -163,7 +237,10 @@ CREATE TABLE `phanquyen` (
 --
 
 INSERT INTO `phanquyen` (`maquyen`, `idNguoidung`) VALUES
-(2, 7);
+(1, 2),
+(3, 3),
+(2, 4),
+(2, 5);
 
 -- --------------------------------------------------------
 
@@ -202,7 +279,11 @@ CREATE TABLE `thietbi` (
 --
 
 INSERT INTO `thietbi` (`matb`, `maloai`, `nhasx`) VALUES
-(4, 1, NULL);
+(1, 1, 'DELL'),
+(2, 8, 'Canon'),
+(5, 3, NULL),
+(6, 8, 'Canon'),
+(7, 1, 'HP');
 
 -- --------------------------------------------------------
 
@@ -225,7 +306,11 @@ CREATE TABLE `yeucau` (
 --
 
 INSERT INTO `yeucau` (`mayc`, `matb`, `tendv`, `tinhtrang`, `ngayyc`, `idnguoidung`, `hientrang`) VALUES
-(2, 4, 'Bộ môn dược', 'Phòng 4 máy 12 nguồn không lên', '2021-08-07 08:11:31', 7, 0);
+(1, 1, 'Bộ môn dược', 'Phòng 14 máy 2 không lên nguồn', '2021-08-09 14:04:50', 4, 2),
+(2, 2, 'Bộ môn dược', 'Máy in không ra chữ', '2021-08-09 14:13:49', 4, 2),
+(5, 5, 'Bộ môn dược', 'Hỏng', '2021-08-09 14:14:38', 4, 2),
+(6, 6, 'Bộ môn nội soi', 'Máy mở không lên nguồn', '2021-08-09 09:44:41', 5, 1),
+(7, 7, 'Bộ môn nội soi', 'Phòng 12 máy không lên nguồn', '2021-08-09 14:14:20', 5, 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -237,6 +322,12 @@ INSERT INTO `yeucau` (`mayc`, `matb`, `tendv`, `tinhtrang`, `ngayyc`, `idnguoidu
 ALTER TABLE `chitiethd`
   ADD KEY `chitiethd_ibfk_1` (`mahd`),
   ADD KEY `chitiethd_ibfk_2` (`malinhkien`);
+
+--
+-- Chỉ mục cho bảng `danhgia`
+--
+ALTER TABLE `danhgia`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `donvi`
@@ -271,6 +362,12 @@ ALTER TABLE `nguoidung`
   ADD UNIQUE KEY `macb` (`macb`);
 
 --
+-- Chỉ mục cho bảng `phanhoicb`
+--
+ALTER TABLE `phanhoicb`
+  ADD PRIMARY KEY (`mayeucau`);
+
+--
 -- Chỉ mục cho bảng `phanquyen`
 --
 ALTER TABLE `phanquyen`
@@ -295,7 +392,7 @@ ALTER TABLE `thietbi`
 ALTER TABLE `yeucau`
   ADD PRIMARY KEY (`mayc`),
   ADD KEY `yeucau_ibfk_1` (`idnguoidung`),
-  ADD KEY `matb` (`matb`);
+  ADD KEY `yeucau_ibfk_2` (`matb`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -311,7 +408,7 @@ ALTER TABLE `donvi`
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `mahd` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mahd` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `linhkien`
@@ -323,13 +420,13 @@ ALTER TABLE `linhkien`
 -- AUTO_INCREMENT cho bảng `loaitb`
 --
 ALTER TABLE `loaitb`
-  MODIFY `maloai` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `maloai` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `quyen`
@@ -341,13 +438,13 @@ ALTER TABLE `quyen`
 -- AUTO_INCREMENT cho bảng `thietbi`
 --
 ALTER TABLE `thietbi`
-  MODIFY `matb` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `matb` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `yeucau`
 --
 ALTER TABLE `yeucau`
-  MODIFY `mayc` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mayc` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -383,7 +480,7 @@ ALTER TABLE `thietbi`
 --
 ALTER TABLE `yeucau`
   ADD CONSTRAINT `yeucau_ibfk_1` FOREIGN KEY (`idnguoidung`) REFERENCES `nguoidung` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `yeucau_ibfk_2` FOREIGN KEY (`matb`) REFERENCES `thietbi` (`matb`);
+  ADD CONSTRAINT `yeucau_ibfk_2` FOREIGN KEY (`matb`) REFERENCES `thietbi` (`matb`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

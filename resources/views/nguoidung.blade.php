@@ -91,7 +91,7 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{ URL::to('/nguoidung') }}" class="active">Home</a></li>
+                                <li><a href="{{ URL::to('/nguoidung') }}" class="active">Trang chủ</a></li>
                                 <li class="dropdown"><a href="#">Báo cáo sự cố</a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="{{ URL::to('/baocao') }}">Máy tính các loại</a></li>
@@ -100,8 +100,9 @@
                                     </ul>
                                 </li>
                                 <li><a href="{{ URL::to('/yeucau') }}">Yêu cầu đã gửi</a></li>
-                                <li><a href="404.html">Thông báo</a></li>
+                                <li><a href="{{ URL::to('/thongbao') }}">Thông báo</a></li>
                                 <li><a href="{{ URL::to('/danhgia') }}">Đánh giá</a></li>
+                                <li><a href="{{ URL::to('/xemdanhgia') }}">Xem đánh giá</a></li>
                             </ul>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 //Home
 Route::get('/','App\Http\Controllers\HomeController@index');
 Route::get('/dangki','App\Http\Controllers\HomeController@dangki');
+Route::get('/danhgia','App\Http\Controllers\HomeController@danhgia');
 
 //Admin
 Route::get('/dashboard', 'App\Http\Controllers\AdminController@index');
@@ -41,8 +42,19 @@ Route::get('/yeucau', 'App\Http\Controllers\UserController@yeucau');
 Route::get('/danhgia', 'App\Http\Controllers\UserController@danhgia');
 Route::post('/luu-danhgia', 'App\Http\Controllers\UserController@luu_danhgia');
 Route::get('/dangxuat-nguoidung', 'App\Http\Controllers\UserController@dangxuat_nguoidung');
+Route::get('/thongbao', 'App\Http\Controllers\UserController@thongbao');
+Route::get('/xemdanhgia', 'App\Http\Controllers\UserController@xemdanhgia');
 
 //Can bo
 Route::get('/canbo', 'App\Http\Controllers\UserController@canbo');
 Route::get('/dangxuat-cb', 'App\Http\Controllers\UserController@dangxuat_cb');
 Route::get('/yeucau-kh', 'App\Http\Controllers\UserController@yeucau_kh');
+Route::get('/traloi/{mayc}', 'App\Http\Controllers\UserController@traloi');
+Route::post('/luu-traloi/{mayc}', 'App\Http\Controllers\UserController@luu_traloi');
+Route::get('/dangthuchien', 'App\Http\Controllers\UserController@dangthuchien');
+Route::get('/tienhanh/{matb}', 'App\Http\Controllers\UserController@tienhanh');
+Route::post('/luu-hoadon/{matb}', 'App\Http\Controllers\UserController@luu_hoadon');
+Route::get('/hoadon', 'App\Http\Controllers\UserController@hoadon');
+Route::get('/themlinhkien/{mahd}', 'App\Http\Controllers\UserController@themlinhkien');
+Route::post('/them-linhkien/{mahd}', 'App\Http\Controllers\UserController@them_linhkien');
+Route::get('/xacnhan/{mahd}', 'App\Http\Controllers\UserController@xacnhan');
