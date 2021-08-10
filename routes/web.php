@@ -9,6 +9,12 @@ Route::get('/danhgia','App\Http\Controllers\HomeController@danhgia');
 
 //Admin
 Route::get('/dashboard', 'App\Http\Controllers\AdminController@index');
+Route::get('/dangnhap', 'App\Http\Controllers\AdminController@dangnhap');
+Route::post('/kt-dangnhap', 'App\Http\Controllers\AdminController@kt_dangnhap');
+Route::get('/logout', 'App\Http\Controllers\AdminController@logout');
+Route::get('/qlyeucau', 'App\Http\Controllers\AdminController@qlyeucau');
+Route::get('/qldanhgia', 'App\Http\Controllers\AdminController@qldanhgia');
+Route::get('/qlhoadon', 'App\Http\Controllers\AdminController@qlhoadon');
 
 //QL Don vi
 Route::get('/them-dv', 'App\Http\Controllers\AdminController@add_dv');

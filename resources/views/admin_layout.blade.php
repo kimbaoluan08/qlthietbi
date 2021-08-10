@@ -58,7 +58,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="username" style="padding-left: 5px;">Luân Kim
+                            <span class="username" style="padding-left: 5px;">
+                                <?php $message = Session()->get('admin_ten');
+                                if ($message) {
+                                    echo $message;
+                                } ?>
                                 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -112,21 +116,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{ URL::to('/qlyeucau') }}">
                                 <i class="fa fa-question-circle"></i>
                                 <span>Quản lý yêu cầu</span>
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{ URL::to('/qldanhgia') }}">
                                 <i class="fa fa-star"></i>
                                 <span>Quản lý đánh giá</span>
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
-                                <i class="fa fa-comment"></i>
-                                <span>Quản lý phản hồi</span>
+                            <a href="{{ URL::to('/qlhoadon') }}">
+                                <i class="fa fa-file-text-o"></i>
+                                <span>Quản lý hoá đơn</span>
                             </a>
                         </li>
                     </ul>
